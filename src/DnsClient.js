@@ -9,10 +9,23 @@ export class DnsClient extends React.Component {
   constructor(props) {
     super(props);
     this.props = props;
-    this.state = { queryName: 'example.com', queryType: 'A', queryDNSSEC: false, queryNoValidation: false }
+    this.state = { queryName: 'example.com', queryType: 'A', queryDNSSEC: false, queryNoValidation: false, resolver: this.resolvers[0]?.url }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+
+    const commonRecordTypes = ['A', 'AAAA', 'TXT', 'MX'];
+    const ignoredRecords = ['Reserved', 'Unassigned', 'Private use'];
+
+    this.commonRecordTypes = [];
+    this.otherRecordTypes = [];
+    this.obsoleteRecordTypes = [];
+    for (const record of Object.values(ianaTypes)) {
+      if (ignoredRecords.includes(record.TYPE)) continue;
+      else if (commonRecordTypes.includes(record.TYPE)) this.commonRecordTypes.push(record);
+      else if (record.Meaning.includes('OBSOLETE')) this.obsoleteRecordTypes.push(record);
+      else this.otherRecordTypes.push(record);
+    }
   }
 
   resolvers = [{
@@ -74,11 +87,22 @@ export class DnsClient extends React.Component {
                   custom
                   isValid={!this.state.queryType}
                 >
-                  <option selected>Choose...</option>
-                  {['A', 'AAAA', 'MX', 'TXT', 'NS', 'SRV', 'ANY'].map((qtype, index) =>
-                    <option key={index} value={qtype}
-                      selected={this.state.queryType === qtype}>{qtype}</option>
-                  )}
+                  <optgroup label="Common record types">
+                    {this.commonRecordTypes.map((item, index) =>
+                      <option key={index} value={item.TYPE}
+                        selected={this.state.queryType === item.TYPE} title={item.Meaning}>{item.TYPE}
+                      </option>)}
+                  </optgroup>
+                  {this.otherRecordTypes.map((item, index) =>
+                    <option key={index} value={item.TYPE}
+                      selected={this.state.queryType === item.TYPE} title={item.Meaning}>{item.TYPE}
+                    </option>)}
+                  <optgroup label="Obsolete record types">
+                    {this.obsoleteRecordTypes.map((item, index) =>
+                      <option key={index} value={item.TYPE}
+                        selected={this.state.queryType === item.TYPE} title={item.Meaning}>{item.TYPE}
+                      </option>)}
+                  </optgroup>
                 </Form.Control>
               </Form.Group>
             </Col><Col md={7}>
@@ -98,10 +122,9 @@ export class DnsClient extends React.Component {
                     as="select"
                     custom
                   >
-                    <option selected>Choose resolver…</option>
                     {this.resolvers.map((resolver, index) =>
                       <option key={index} value={resolver.url}
-                        selected={this.state.resolver?.url === resolver.url}>{resolver.name}</option>
+                        selected={this.state.resolver === resolver.url}>{resolver.name}</option>
                     )}
                   </Form.Control>
                 </Form.Group>
@@ -127,7 +150,7 @@ export class DnsClient extends React.Component {
               <Col md={3} sm={6}>
                 <Button variant="primary" type="submit">
                   Submit
-                            </Button>
+                </Button>
               </Col>
             </Row>
           </Form>
