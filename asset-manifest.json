@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/dns-client/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/dns-client/static/js/main.d415348c.chunk.js",
+    "main.js.map": "/dns-client/static/js/main.d415348c.chunk.js.map",
+    "runtime-main.js": "/dns-client/static/js/runtime-main.9aad4fd8.js",
+    "runtime-main.js.map": "/dns-client/static/js/runtime-main.9aad4fd8.js.map",
+    "static/css/2.af3c1da9.chunk.css": "/dns-client/static/css/2.af3c1da9.chunk.css",
+    "static/js/2.bc03ac0d.chunk.js": "/dns-client/static/js/2.bc03ac0d.chunk.js",
+    "static/js/2.bc03ac0d.chunk.js.map": "/dns-client/static/js/2.bc03ac0d.chunk.js.map",
+    "index.html": "/dns-client/index.html",
+    "precache-manifest.ff40527d1e09c39a26a39379708eb283.js": "/dns-client/precache-manifest.ff40527d1e09c39a26a39379708eb283.js",
+    "service-worker.js": "/dns-client/service-worker.js",
+    "static/css/2.af3c1da9.chunk.css.map": "/dns-client/static/css/2.af3c1da9.chunk.css.map",
+    "static/css/main.5ecd60fb.chunk.css.map": "/dns-client/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.bc03ac0d.chunk.js.LICENSE.txt": "/dns-client/static/js/2.bc03ac0d.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9aad4fd8.js",
+    "static/css/2.af3c1da9.chunk.css",
+    "static/js/2.bc03ac0d.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.d415348c.chunk.js"
+  ]
+}
