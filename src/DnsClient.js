@@ -79,7 +79,7 @@ export class DnsClient extends React.Component {
         <Container fluid>
           <Form onSubmit={this.handleSubmit}>
             <Row><Col md={2}>
-              <Form.Group controlId="exampleForm.ControlInput1">
+              <Form.Group controlId="queryType">
                 <Form.Label>Query Type</Form.Label>
 
                 <Form.Control name={'queryType'} onChange={this.handleChange}
@@ -106,7 +106,7 @@ export class DnsClient extends React.Component {
                 </Form.Control>
               </Form.Group>
             </Col><Col md={7}>
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group controlId="queryName">
                   <Form.Label>Query Name</Form.Label>
                   <Form.Control placeholder="example.net"
                     name={'queryName'}
@@ -116,7 +116,7 @@ export class DnsClient extends React.Component {
                 </Form.Group>
               </Col>
               <Col md={3}>
-                <Form.Group controlId="exampleForm.ControlInput1">
+                <Form.Group controlId="resolver">
                   <Form.Label>Resolver:{' '}</Form.Label>
                   <Form.Control name={'resolver'} onChange={this.handleChange}
                     as="select"
